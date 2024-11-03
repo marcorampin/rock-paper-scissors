@@ -6,7 +6,7 @@
  * 	1. Create the html and js files: 					done;
  * 	2. Test the html and js connection: 				done;
  * 	3. Receive the user input (getHumanChoice):			done;
- * 	4. Make the computer choice (getComputerChoice):
+ * 	4. Make the computer choice (getComputerChoice):	done;
  * 	5. Check who wins:
  * 	6. Update the scores (humanScore, computerScore): 
  * 	7. Repeat the round (playRound):
@@ -24,7 +24,12 @@ function getHumanChoice() {
 		humanChoice = prompt('Choose between "Rock", "Paper" and "Scissors"').toLowerCase();
 	}
 	body.innerText = humanChoice;
+	return humanChoice;
 }
 
-// 4. Make the computer choice (getComputerChoice):
-
+// 4. Make the computer choice (getComputerChoice):		done;
+function getComputerChoice() {
+	let computerChoice = Math.floor(Math.random() * (choice.length - 1));
+	body.innerText = choice[computerChoice];
+	return choice[computerChoice];
+}
