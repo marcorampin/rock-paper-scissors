@@ -8,7 +8,7 @@
  * 	3. Receive the user input (getHumanChoice):			done;
  * 	4. Make the computer choice (getComputerChoice):	done;
  * 	5. Repeat the round (playRound):					done;
- * 	6. Update the scores (humanScore, computerScore): 
+ * 	6. Update the scores (humanScore, computerScore): 	done;
  * 	7. Make a game (5 rounds, playGame): 
  * 	8. Print the choices and who wins: 
 */
@@ -49,4 +49,20 @@ function playRound() {
 		return 2;
 	}
 }
-// 6. Update the scores (humanScore, computerScore): 
+
+// 6. Update the scores (humanScore, computerScore):	done;
+function updateScores(result, humanScore, computerScore) {
+	switch (result) {
+		case 0:
+			turnResult.innerText = "Draw";
+			break;
+		case 1:
+			turnResult.innerText = "Player wins the round";
+			playerRounds.innerText = humanScore + 1;
+			return humanScore + 1;
+		case 2:
+			turnResult.innerText = "Computer wins the round";
+			computerRounds.innerText = computerScore + 1;
+			return computerScore + 1;
+	}
+}
