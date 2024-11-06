@@ -12,15 +12,15 @@
  * 	7. Make a game (5 rounds, playGame): 				done;
 */
 
-const playerChoice = document.getElementById("player-choice");
-const computerChoice = document.getElementById("computer-choice");
-const turnResult = document.getElementById("turn-result");
-const drawRounds = document.getElementById("draw-rounds");
-const playerRounds = document.getElementById("player-rounds");
-const computerRounds = document.getElementById("computer-rounds");
+const playerChoiceEl = document.getElementById("player-choice");
+const computerChoiceEl = document.getElementById("computer-choice");
+const roundResultEl = document.getElementById("turn-result");
+const drawRoundsEl = document.getElementById("draw-rounds");
+const playerRoundsEl = document.getElementById("player-rounds");
+const computerRoundsEl = document.getElementById("computer-rounds");
 
-const choice = ['rock', 'paper', 'scissors'];
-let humanScore = 0;
+const choiceArr = ['rock', 'paper', 'scissors'];
+let playerScore = 0;
 let computerScore = 0;
 let drawScore = 0;
 let numRounds = 0;
@@ -37,19 +37,19 @@ scissorsButton.addEventListener("click", () => playGame("scissors"));
 
 // 4. Make the computer choice (getComputerChoice):		done;
 function getComputerChoice() {
-	let randomChoice = Math.floor(Math.random() * choice.length);
-	return choice[randomChoice];
+	const randomChoice = Math.floor(Math.random() * choiceArr.length);
+	return choiceArr[randomChoice];
 }
 
 // 5. Repeat the round (playRound):						done;
-function playRound(humanChoice) {
-	const humanIndex = choice.indexOf(humanChoice);
-	const computerIndex = choice.indexOf(getComputerChoice());
-	playerChoice.innerText = choice[humanIndex];
-	computerChoice.innerText = choice[computerIndex];
-	if (humanIndex === computerIndex) {
+function playRound(playerChoice) {
+	const playerIndex = choiceArr.indexOf(playerChoice);
+	const computerIndex = choiceArr.indexOf(getComputerChoice());
+	playerChoiceEl.innerText = choiceArr[playerIndex];
+	computerChoiceEl.innerText = choiceArr[computerIndex];
+	if (playerIndex === computerIndex) {
 		updateScores("draw");
-	} else if ((humanIndex === computerIndex + 1) || (humanIndex === computerIndex - 2)) {
+	} else if ((playerIndex === computerIndex + 1) || (playerIndex === computerIndex - 2)) {
 		updateScores("player");
 	} else {
 		updateScores("computer");
@@ -57,24 +57,27 @@ function playRound(humanChoice) {
 }
 
 // 6. Update the scores (humanScore, computerScore):	done;
+drawRoundsEl.innerText = 0;
+playerRoundsEl.innerText = 0;
+computerRoundsEl.innerText = 0;
 function updateScores(result) {
 	switch (result) {
 		case "draw":
-			turnResult.innerText = "Draw";
+			roundResultEl.innerText = "Draw";
 			drawScore++;
+			drawRoundsEl.innerText = drawScore;
 			break;
 		case "player":
-			turnResult.innerText = "Player wins the round";
-			humanScore++;
+			roundResultEl.innerText = "Player wins the round";
+			playerScore++;
+			playerRoundsEl.innerText = playerScore;
 			break;
 		case "computer":
-			turnResult.innerText = "Computer wins the round";
+			roundResultEl.innerText = "Computer wins the round";
 			computerScore++;
+			computerRoundsEl.innerText = computerScore;
 			break;
 	}
-	drawRounds.innerText = drawScore;
-	playerRounds.innerText = humanScore;
-	computerRounds.innerText = computerScore;
 }
 
 // 7. Make a game (5 rounds, playGame): 				done;
